@@ -5,10 +5,12 @@ var findOrCreate = require('mongoose-findorcreate')
 const twitterUser = new Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        index: true
     },
     id: {
         type: String,
+        index: true
     },
     profileImageUrl: {
         type: String
@@ -31,13 +33,22 @@ const twitterUser = new Schema({
         tweet_count: Number,
         listed_count: Number
     },
+
     memberSince: {
         type: Date
     },
-    auth: {
-        accessToken: String,
-        refreshToken: String,
-    }
+    auth:
+    {
+        consumer_key: {
+            type: String,
+            required: true
+        },
+        access_token: {
+            type: String,
+            required: true
+        },
+    },
+
 });
 
 twitterUser.plugin(findOrCreate);

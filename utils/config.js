@@ -1,7 +1,7 @@
 const config = {
-    EXPIRES_IN: "3600s",
-    REFRESH_EXPIRES_IN: "7200s",
-    MAX_IMAGE_SIZE: 10 // in Megabytes
+    EXPIRES_IN: "24h",
+    REFRESH_EXPIRES_IN: "48h",
+    MAX_IMAGE_SIZE: 25 // in Megabytes
 }
 
 module.exports = config

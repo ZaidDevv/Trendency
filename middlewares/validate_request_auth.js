@@ -3,20 +3,34 @@ const createHttpError = require('http-errors');
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
-module.exports = function validateAuth(req, res, next) {
+function validateAuth(req, res, next) {
     const accessToken = req.headers['authorization']
 
-
-    if (!accessToken) {
-        return next(createHttpError(401, "No Access Token Provided"))
+    if (!accessToken || accessToken.isEmpty) {
+        next(createHttpError(401, "No Access Token Provided"))
     }
     try {
         var formattedToken = accessToken.replace("Bearer ", "")
-        jwt.verify(formattedToken, process.env.JWT_SECRET);
+        const decoded = jwt.verify(formattedToken, process.env.JWT_SECRET)
+
+        req.cookies.accessToken = formattedToken
+        req.username = decoded.username;
+        next();
     }
     catch (e) {
-        throw createHttpError(500, e)
+        if (e instanceof jwt.TokenExpiredError) {
+            req.username = e.username
+            req.expiredAt = e.expiredAt
+
+            next(createHttpError(401, e))
+        }
+        else {
+            next(e)
+        }
     }
 
-    return next()
 };
+
+module.exports = {
+    validateAuth
+}

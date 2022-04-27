@@ -1,12 +1,11 @@
 
 const User = require('../../models/User')
-const createHttpError = require('http-errors')
-
 
 const getUserById = async function (id) {
 
     try {
-        const user = User.findOne({ id });
+        const user = await User.findOne({ id });
+
         return user;
     }
     catch (e) {
@@ -19,6 +18,22 @@ const updateUserById = async function (id, payload) {
     try {
         const user = await User.findOneAndUpdate({ id }, payload);
         return user;
+
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
+const deleteUserById = async function (id, payload) {
+
+    try {
+        const user = await User.deleteUserById({ id });
+        return {
+            message: "Success",
+            details: "User Deleted!"
+        };
+
     }
     catch (e) {
         throw e;
@@ -28,5 +43,6 @@ const updateUserById = async function (id, payload) {
 
 module.exports = {
     getUserById,
-    updateUserById
+    updateUserById,
+    deleteUserById
 }

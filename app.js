@@ -1,11 +1,12 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const routes = require('./routes/routes.js')
+var cors = require('cors')
 const session = require('express-session');
-const passport = require('passport')
+const routes = require('./routes/routes.js')
 require('dotenv').config()
-const createHttpError = require('http-errors')
+var morgan = require('morgan');
+var cookieParser = require('cookie-parser');
 
 require("./utils/mongoose.js");
 
@@ -15,27 +16,25 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req, res) => res.send('Trendency Gateway'))
 
 
+app.use(cookieParser());
+app.use(morgan('dev'))
+app.use('/uploads', express.static('uploads'))
 app.use(session({
-  resave: false,
+  secret: process.env.SESSION_SECRET,
   saveUninitialized: true,
-  secret: process.env.SESSION_SECRET
+  cookie: { httpOnly: false, secure: false, maxAge: 86400000 },
+  resave: false
 }));
 
-app.use('/uploads', express.static('uploads'))
-app.use(passport.initialize());
-app.use(passport.session());
-
+app.use(cors({ credentials: true, withCredentials: true }))
 
 // Main Route
 app.use('/api', routes)
 
-//* Catch HTTP 404 
-app.use((req, res, next) => {
-  next(createHttpError(404));
-})
 
 //* Error Handler
 app.use((err, req, res, next) => {
+
   res.status(err.status || 500);
   res.json({
     error: {

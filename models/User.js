@@ -7,7 +7,8 @@ const userSchema = new Schema({
     username: {
         type: String,
         unique: true,
-        required: true
+        required: true,
+        index: true
     },
     email: {
         type: String,
@@ -21,18 +22,21 @@ const userSchema = new Schema({
         type: String
     },
     password: {
-        type: String
+        type: String,
+        required: true
     },
-    linked_accounts: [],
     id: {
         index: true,
         type: String,
         required: true
     },
-
-    auth: {
-        accessToken: String,
-        refreshToken: String,
+    is_verified: {
+        type: Boolean,
+        default: false,
+    },
+    linked_accounts: {
+        type: Array,
+        default: []
     }
 }, { timestamps: true });
 
