@@ -60,7 +60,7 @@ We welcome contributions from the community to make Trendency even better. If yo
 
 ## License
 
-Trendency is released under the [MIT License](LICENSE.md). You are free to use, modify, and distribute the application, subject to the terms of the license.
+Trendency is released under the [Apache License](LICENSE.md). You are free to use, modify, and distribute the application, subject to the terms of the license.
 
 ---
 
