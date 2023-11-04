@@ -54,6 +54,12 @@ Trendency is built using modern web technologies:
 - Authentication: OAuth 2.0
 - Third-party APIs:  Twitter API, Reddit API
 
+
+## Media
+
+![landing screen](https://i.imgur.com/uPlyVjh.png) ![home screen](https://i.imgur.com/xMLdcrT.png) ![call to action screen](https://i.imgur.com/Kd4pGFl.png) 
+
+
 ## Contributing
 
 We welcome contributions from the community to make Trendency even better. If you'd like to contribute, please follow our [contribution guidelines](CONTRIBUTING.md).
