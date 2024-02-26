@@ -42,7 +42,7 @@ Trendency currently supports the following social media platforms:
 - Reddit
 - (more platforms supported soon)
 
-We are continuously working to expand the list of supported platforms and improve the user experience.
+I am continuously working to expand the list of supported platforms and improve the user experience.
 
 ## Technologies Used
 
@@ -52,7 +52,7 @@ Trendency is built using modern web technologies:
 - Backend: Node.js, Express
 - Database: MongoDB
 - Authentication: OAuth 2.0
-- Third-party APIs:  Twitter API, Reddit API
+- Third-party APIs: Twitter API, Reddit API
 
 
 ## Media
@@ -62,7 +62,7 @@ Trendency is built using modern web technologies:
 
 ## Contributing
 
-We welcome contributions from the community to make Trendency even better. If you'd like to contribute, please follow our [contribution guidelines](CONTRIBUTING.md).
+I welcome contributions from the community to make Trendency even better. If you'd like to contribute, please follow our [contribution guidelines](CONTRIBUTING.md).
 
 ## License
 
